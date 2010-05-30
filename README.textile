@@ -1,0 +1,3 @@
+h1. ResourceRouter
+
+A HTTP router to use as rack endpoint/middleware, supporting RESTful routing.

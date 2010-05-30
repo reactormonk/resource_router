@@ -1,0 +1,15 @@
+h1. the four parts of tree routing
+
+h2. parsing
+
+Done by @URI::parse@
+
+h2. walking
+
+h3. visiting a Node
+
+h3. asking the NodeSet
+
+h3. finish walking
+
+h2. calling the rack app
