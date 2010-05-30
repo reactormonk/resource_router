@@ -1,4 +1,4 @@
-h1. the four parts of tree routing
+h1. the three parts of tree routing
 
 h2. parsing
 
