@@ -27,7 +27,7 @@ module ResourceRouter
 
       # A Walker visits the Node when entering it.
       # @param [Walker] walker set the variables in that walker
-      # @return [Object] saved to Walker#variables with key #name
+      # @return [Object] saved to {Walker#variables} with key {#name}
       # @abstract
       def visit(walker)
         raise NotImplemented
