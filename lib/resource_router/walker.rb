@@ -6,7 +6,7 @@ module ResourceRouter
       @uri = URI::parse(url)
       @remaining_paths = @uri.path.split("/")
       @remaining_domains = @uri.host.split('.')
-      @walked = {}
+      @variables = {}
     end
 
     # @return [Array<String>] Paths still to be assigned to a node.

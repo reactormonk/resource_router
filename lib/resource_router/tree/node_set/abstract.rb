@@ -2,7 +2,7 @@ module ResourceRouter
   module Tree
     module NodeSet
 
-      class Simple
+      class Abstract
 
         def initialize
           @children = []
@@ -10,6 +10,11 @@ module ResourceRouter
 
         # @return [Array<Node>] contains child Nodes
         attr_reader :children
+
+        # Callback if all Nodes are added, so you can do static optimizations
+        # @abstract
+        def optimize
+        end
 
         # @param [Walker] walker find the matching child Nodes for that walker
         # @return [Array<Node>] possible Nodes

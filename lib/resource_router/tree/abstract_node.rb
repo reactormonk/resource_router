@@ -4,11 +4,18 @@ module ResourceRouter
 
       def initialize(parent)
         @parent = parent
-        @node_set = NodeSet.new
+        @node_set = self.class.node_set.new
+      end
+
+      class << self
+        # @return [NodeSet] the nodeset to use
+        attr_accessor :node_set
       end
 
       # @return [Array<Node>] child nodes
-      attr_reader :children
+      def children
+        @node_set.children
+      end
 
       # @return [Node] parent node
       attr_reader :parent
