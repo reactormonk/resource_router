@@ -2,14 +2,14 @@ h1. the three parts of tree routing
 
 h2. parsing
 
-Done by @URI::parse@
+Done by @URI::parse@.
 
-h2. walking
+h2. Walker
 
-h3. visiting a Node
-
-h3. asking the NodeSet
-
-h3. finish walking
+The Walker creates a Runner and sends it through the tree. If the Runner finds
+more than one path somewhere, the Walker dups the Runner and shifts it to an
+Array and tires it later on if the inital one fails to find a Route. Note:
+This way we don't find ambigious routes, so the walking algorithms have to
+prefer more specific routes (set further left in the Array of children).
 
 h2. calling the rack app
