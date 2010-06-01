@@ -12,6 +12,12 @@ suite "ResourceRouter" do
       verify "got a NodeSet attached" do
         kind_of(ResourceRouter::Tree::NodeSet::AbstractNodeSet, returned.node_set)
       end
+      verify "got matches?" do
+        returned.respond_to?(:matches?)
+      end
+      verify "got visit" do
+        returned.respond_to?(:visit)
+      end
 
     end
   end
