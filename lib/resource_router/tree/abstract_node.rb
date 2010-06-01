@@ -1,4 +1,4 @@
-require 'resource_router/tree/node_set/abstract'
+require 'resource_router/tree/node_set/abstract_node_set'
 module ResourceRouter
   module Tree
     class AbstractNode
@@ -13,12 +13,15 @@ module ResourceRouter
         attr_accessor :node_set
       end
 
-      self.node_set = NodeSet::Abstract
+      self.node_set = NodeSet::AbstractNodeSet
 
-      # @return [Array<Node>] child nodes
+      # @return [Array<Node>] child Nodes
       def children
         @node_set.children
       end
+
+      # @return [NodeSet] the NodeSet holding the children
+      attr_reader :node_set
 
       # @return [Node] parent node
       attr_reader :parent

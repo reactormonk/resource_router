@@ -2,7 +2,7 @@ module ResourceRouter
   module Tree
     module NodeSet
 
-      class Abstract
+      class AbstractNodeSet
 
         def initialize
           @children = []

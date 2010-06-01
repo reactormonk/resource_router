@@ -7,7 +7,10 @@ suite "ResourceRouter" do
         ResourceRouter::Tree::AbstractNode.new(:parent)
       end
       verify "got its parent set" do
-        equal(returned.parent, :parent)
+        equal(:parent, returned.parent)
+      end
+      verify "got a NodeSet attached" do
+        kind_of(ResourceRouter::Tree::NodeSet::AbstractNodeSet, returned.node_set)
       end
 
     end
