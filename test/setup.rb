@@ -4,6 +4,10 @@ $LOAD_PATH.unshift(File.expand_path("#{__FILE__}/../../lib"))
 # Ensure baretest is required
 require 'baretest'
 
+# require components
+require_relative 'use/node_set'
+require_relative 'use/node'
+
 # Some defaults on BareTest (see Kernel#BareTest)
 BareTest do
   require_baretest "0.4.1" # minimum baretest version to run these tests
