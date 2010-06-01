@@ -12,13 +12,10 @@ suite "ResourceRouter" do
       ResourceRouter::Walker.new(@url, nil)
     end
     verify "got an array of paths" do
-      equal(returned.remaining_paths, [''] + %w(make me a sandwitch))
+      equal(returned.paths, [''] + %w(make me a sandwitch))
     end
     verify "got an array of domains" do
-      equal(returned.remaining_domains, %w(foo bar baz))
-    end
-    verify "got a #variables with a hash" do
-      kind_of(Hash, returned.variables)
+      equal(returned.domains, %w(foo bar baz))
     end
 
   end

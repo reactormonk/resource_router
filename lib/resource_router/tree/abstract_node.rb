@@ -26,28 +26,24 @@ module ResourceRouter
       # @return [Node] parent node
       attr_reader :parent
 
-      # @return [Symbol] key for storing variables in the Walker
+      # @return [Symbol] key for storing variables in the Runner
       attr_reader :name
 
       # Most basic method that checks wherever the given node may be matched
       # to the remaining path.
-      # @param [Walker] walker matches for that walker?
+      # @param [Runner] runner matches for that runner?
       # @return [Boolean]
       # @abstract
-      def matches?(walker)
+      def matches?(runner)
         raise NotImplemented
       end
 
-      # A Walker visits the Node when entering it.
-      # @param [Walker] walker set the variables in that walker
-      # @return [Object] saved to {Walker#variables} with key {#name}
+      # A Runner visits the Node when entering it.
+      # @param [Runner] runner set the variables in that runner
+      # @return [Object] saved to {Runner#variables} with key {#name}
       # @abstract
-      def visit(walker)
+      def visit(runner)
         raise NotImplemented
-      end
-
-      def to_proc
-        method(:visit)
       end
 
     end

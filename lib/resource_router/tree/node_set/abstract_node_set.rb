@@ -16,11 +16,11 @@ module ResourceRouter
         def optimize
         end
 
-        # @param [Walker] walker find the matching child Nodes for that walker
+        # @param [Runner] runner find the matching child Nodes for that runner
         # @return [Array<Node>] possible Nodes
         # @abstract
-        def find_children(walker)
-          @children.select {|child| child.matches?(walker) }
+        def find_children(runner)
+          @children.select {|child| child.matches?(runner)}
         end
 
       end
