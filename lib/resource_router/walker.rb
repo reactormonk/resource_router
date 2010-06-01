@@ -21,7 +21,7 @@ module ResourceRouter
     def recognize
       runners = [Runner.new(node, @paths, @domains)]
       successful_runner = nil
-      while !successful_runner && !runners.empty?
+      while !successful_runner || !runners.empty?
         runner = runners.first
         nodes = runner.run
         nodes.each {|node| runners.push(runner.dup)}
