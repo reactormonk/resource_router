@@ -28,7 +28,7 @@ module ResourceRouter
     # Visit the current node and move on to the next one.
     # @return [Array<Node>] leftover nodes
     def run
-      @node.visit(self)
+      variables.merge!({@node.name => @node.visit(self)})
       children = @node.find_children(self)
       self.node = children.shift
       children
