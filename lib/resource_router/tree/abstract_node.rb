@@ -3,17 +3,16 @@ module ResourceRouter
   module Tree
     class AbstractNode
 
+      # @param [Node] parent the parent node
       def initialize(parent)
         @parent = parent
-        @node_set = self.class.node_set.new
+        @node_set = (self.class.node_set ||= NodeSet::AbstractNodeSet).new
       end
 
       class << self
         # @return [NodeSet] the nodeset to use
         attr_accessor :node_set
       end
-
-      self.node_set = NodeSet::AbstractNodeSet
 
       # @return [Array<Node>] child Nodes
       def children
