@@ -51,7 +51,7 @@ module ResourceRouter
         raise NotImplemented
       end
 
-      # Comparable.
+      # Comparable, sort by priority, highest first.
       def <=>(other)
          other.class.priority <=> self.class.priority
       end
