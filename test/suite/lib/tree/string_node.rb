@@ -49,7 +49,7 @@ suite "ResourceRouter" do
           exercise "#matches?" do
             @node.matches?(@runner)
           end
-          verify "" do
+          verify ":runner" do
             equal(@matches)
           end
 
