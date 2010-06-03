@@ -10,6 +10,8 @@ module ResourceRouter
         @string = @name = string
       end
 
+      self.priority = 7
+
       # @return [String] The string this Node should match.
       attr_reader :string
 

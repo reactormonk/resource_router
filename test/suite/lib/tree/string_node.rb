@@ -6,6 +6,13 @@ suite "ResourceRouter" do
         @node_class = ResourceRouter::Tree::StringNode
       end
 
+      exercise "StringNode" do
+        @node_class
+      end
+      verify "priority 7" do
+        equal(7, returned.priority)
+      end
+
       exercise "a new StringNode" do
         @node_class.new(:parent, :string)
       end

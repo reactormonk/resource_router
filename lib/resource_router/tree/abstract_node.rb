@@ -12,6 +12,12 @@ module ResourceRouter
       class << self
         # @return [NodeSet] the nodeset to use
         attr_accessor :node_set
+
+        # @return [Integer] priority for this node
+        #   Priorities should be from 0 to 10, the higher, the faster a Node
+        #   will be walked. Example: Glob got 0 priority, so it'll be walked
+        #   last at all times.
+        attr_accessor :priority
       end
 
       # @return [Array<Node>] child Nodes
@@ -44,6 +50,12 @@ module ResourceRouter
       def visit(runner)
         raise NotImplemented
       end
+
+      # Comparable.
+      def <=>(other)
+         other.class.priority <=> self.class.priority
+      end
+      include Comparable
 
     end
   end

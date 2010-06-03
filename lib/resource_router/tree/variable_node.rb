@@ -11,6 +11,8 @@ module ResourceRouter
         @name = name
       end
 
+      self.priority = 5
+
       # @see AbstractNode#visit
       def visit(runner)
         runner.remaining_paths.shift

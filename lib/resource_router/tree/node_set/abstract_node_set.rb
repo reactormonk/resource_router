@@ -20,7 +20,7 @@ module ResourceRouter
         # @return [Array<Node>] possible Nodes
         # @abstract
         def find_children(runner)
-          @children.select {|child| child.matches?(runner)}
+          @children.select {|child| child.matches?(runner)}.sort
         end
 
       end

@@ -6,6 +6,13 @@ suite "ResourceRouter" do
         @node_class = ResourceRouter::Tree::VariableNode
       end
 
+      exercise "VariableNode" do
+        @node_class
+      end
+      verify "priority 5" do
+        equal(5, returned.priority)
+      end
+
       exercise "a new VariableNode" do
         @node_class.new(:parent, :name)
       end
