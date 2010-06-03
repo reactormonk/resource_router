@@ -14,7 +14,7 @@ suite "ResourceRouter" do
       end
 
       exercise "a new VariableNode" do
-        @node_class.new(:parent, :name)
+        @node_class.new(:name)
       end
       verify "it's got the name set" do
         equal(:name, returned.name)
@@ -22,7 +22,7 @@ suite "ResourceRouter" do
 
       suite "methods" do
         setup do
-          @node = @node_class.new(:parent, :name)
+          @node = @node_class.new(:name)
           @runner = ResourceRouter::Runner.new(:node, %w(foo bar baz), %w())
         end
 

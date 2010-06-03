@@ -3,10 +3,8 @@ module ResourceRouter
   module Tree
     class StringNode < AbstractNode
 
-      # @param [Node] parent @see AbstractNode
       # @param [String] string The String to be matched by this Node.
-      def initialize(parent, string)
-        super(parent)
+      def initialize(string)
         @string = @name = string
       end
 

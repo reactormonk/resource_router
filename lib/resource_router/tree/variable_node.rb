@@ -3,11 +3,9 @@ module ResourceRouter
   module Tree
     class VariableNode < AbstractNode
 
-      # @param [Node] parent @see AbstractNode
       # @param [String] name Name for this node and therefore key of the
       #   matched path.
-      def initialize(parent, name)
-        super(parent)
+      def initialize(name)
         @name = name
       end
 

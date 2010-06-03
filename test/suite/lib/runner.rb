@@ -42,9 +42,9 @@ suite "ResourceRouter" do
       setup :example, "String/Variable" do
         # copy/pasted from :node_set
         @nodes = [
-          ResourceRouter::Tree::StringNode.new(:parent, "bar"),
-          ResourceRouter::Tree::StringNode.new(:parent, "foo"),
-          ResourceRouter::Tree::VariableNode.new(:parent, :baz)
+          ResourceRouter::Tree::StringNode.new("bar"),
+          ResourceRouter::Tree::StringNode.new("foo"),
+          ResourceRouter::Tree::VariableNode.new(:baz)
         ]
         @children = [@nodes[2]]
         @child = @nodes[1]
@@ -52,15 +52,15 @@ suite "ResourceRouter" do
 
       setup :example, "Variable" do
         @nodes = [
-          ResourceRouter::Tree::StringNode.new(:parent, "bar"),
-          ResourceRouter::Tree::VariableNode.new(:parent, :baz)
+          ResourceRouter::Tree::StringNode.new("bar"),
+          ResourceRouter::Tree::VariableNode.new(:baz)
         ]
         @children = []
         @child = @nodes[1]
       end
 
       setup do
-        @basic_node = ResourceRouter::Tree::VariableNode.new(:parent, :baz)
+        @basic_node = ResourceRouter::Tree::VariableNode.new(:baz)
         @variables = {:baz => "baz"}
         @nodes.each {|node| @basic_node.add_child(node)}
         @runner = ResourceRouter::Runner.new(@basic_node, %w(baz foo bar), %w(example org))

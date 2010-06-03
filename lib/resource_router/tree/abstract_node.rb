@@ -3,12 +3,6 @@ module ResourceRouter
   module Tree
     class AbstractNode
 
-      # @param [Node] parent the parent node
-      def initialize(parent)
-        @parent = parent
-        @node_set = (self.class.node_set ||= NodeSet::AbstractNodeSet).new
-      end
-
       class << self
         # @return [NodeSet] the nodeset to use
         attr_accessor :node_set
@@ -22,23 +16,27 @@ module ResourceRouter
 
       # @return [Array<Node>] child Nodes
       def children
-        @node_set.children
+        node_set.children
       end
 
       # @param [Node] child add a child Node
       def add_child(child)
-        @node_set.add_child(child)
+        child.parent = self
+        node_set.add_child(child)
       end
 
       def find_children(runner)
-        @node_set.find_children(runner)
+        node_set.find_children(runner)
       end
 
       # @return [NodeSet] the NodeSet holding the children
-      attr_reader :node_set
+      def node_set
+        @node_set ||= (self.class.node_set ||= NodeSet::AbstractNodeSet).new
+      end
 
       # @return [Node] parent node
-      attr_reader :parent
+      attr_accessor :parent
+      protected :parent=
 
       # @return [Symbol] key for storing variables in the Runner
       attr_reader :name

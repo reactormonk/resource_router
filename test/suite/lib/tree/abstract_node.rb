@@ -6,6 +6,23 @@ suite "ResourceRouter" do
         @node_class = ResourceRouter::Tree::AbstractNode
       end
 
+      suite "#add_child" do
+        setup do
+          @node = @node_class.new
+          @child = @node_class.new
+        end
+
+        exercise "add it" do
+          @node.add_child(@child)
+        end
+        verify "child got added" do
+          equal([@child], @node.children)
+        end
+        verify "parent got set" do
+          equal(@node, @child.parent)
+        end
+      end
+
       suite "#<=>" do
         setup do
           @classes = [
@@ -15,7 +32,7 @@ suite "ResourceRouter" do
             Class.new(@node_class)
           ]
           @classes.each.with_index {|klass, i| klass.priority = i}
-          @nodes = @classes.map {|klass| klass.new(:parent)}
+          @nodes = @classes.map {|klass| klass.new}
           @nodes.shuffle!
         end
 
@@ -27,6 +44,7 @@ suite "ResourceRouter" do
         end
 
       end
+
     end
   end
 end

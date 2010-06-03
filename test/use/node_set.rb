@@ -18,9 +18,9 @@ BareTest.new_component :node_set do
     end
     setup :example, "a simple example" do
       @nodes = [
-        ResourceRouter::Tree::StringNode.new(:parent, "bar"),
-        ResourceRouter::Tree::StringNode.new(:parent, "foo"),
-        ResourceRouter::Tree::VariableNode.new(:parent, :baz)
+        ResourceRouter::Tree::StringNode.new("bar"),
+        ResourceRouter::Tree::StringNode.new("foo"),
+        ResourceRouter::Tree::VariableNode.new(:baz)
       ]
       @node_set.children.replace(@nodes)
       @runner = ResourceRouter::Runner.new(:node, %w(foo bar), %w(example org))

@@ -4,11 +4,12 @@ module ResourceRouter
   class Walker
 
     # @param [String] url the URL to parse
-    # @param [Node] node the staring node
-    def initialize(url, node)
+    # @param [Node] root_node the staring node (likely a RootNode)
+    def initialize(url, root_node)
       @uri = URI::parse(url)
       @paths = @uri.path.split("/")
       @domains = @uri.host.split('.')
+      @root_node = root_node
     end
 
     # @return [Array<String>]
@@ -19,7 +20,7 @@ module ResourceRouter
 
     # @return [Runner,nil] the successful Runner finding a matching Node.
     def recognize
-      runners = [Runner.new(node, @paths, @domains)]
+      runners = [Runner.new(@root_node, @paths, @domains)]
       successful_runner = nil
       while !successful_runner || !runners.empty?
         runner = runners.first

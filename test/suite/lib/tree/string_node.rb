@@ -14,7 +14,7 @@ suite "ResourceRouter" do
       end
 
       exercise "a new StringNode" do
-        @node_class.new(:parent, :string)
+        @node_class.new(:string)
       end
       verify "it's got the string set" do
         equal(:string, returned.string)
@@ -22,7 +22,7 @@ suite "ResourceRouter" do
 
       suite "methods" do
         setup do
-          @node = @node_class.new(:parent, "foo")
+          @node = @node_class.new("foo")
           @runner = ResourceRouter::Runner.new(:node, %w(foo bar baz), %w())
         end
 
