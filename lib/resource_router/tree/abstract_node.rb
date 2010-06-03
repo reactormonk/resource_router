@@ -30,6 +30,10 @@ module ResourceRouter
         @node_set.add_child(child)
       end
 
+      def find_children(runner)
+        @node_set.find_children(runner)
+      end
+
       # @return [NodeSet] the NodeSet holding the children
       attr_reader :node_set
 

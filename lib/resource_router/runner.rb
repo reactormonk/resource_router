@@ -30,7 +30,7 @@ module ResourceRouter
     def run
       variables.merge!({@node.name => @node.visit(self)})
       children = @node.find_children(self)
-      self.node = children.shift
+      @node = children.shift
       children
     end
 

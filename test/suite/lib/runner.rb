@@ -38,5 +38,47 @@ suite "ResourceRouter" do
       ! returned.variables.equal? @runner.variables
     end
 
+    suite "#run" do
+      setup :example, "String/Variable" do
+        # copy/pasted from :node_set
+        @nodes = [
+          ResourceRouter::Tree::StringNode.new(:parent, "bar"),
+          ResourceRouter::Tree::StringNode.new(:parent, "foo"),
+          ResourceRouter::Tree::VariableNode.new(:parent, :baz)
+        ]
+        @children = [@nodes[2]]
+        @child = @nodes[1]
+      end
+
+      setup :example, "Variable" do
+        @nodes = [
+          ResourceRouter::Tree::StringNode.new(:parent, "bar"),
+          ResourceRouter::Tree::VariableNode.new(:parent, :baz)
+        ]
+        @children = []
+        @child = @nodes[1]
+      end
+
+      setup do
+        @basic_node = ResourceRouter::Tree::VariableNode.new(:parent, :baz)
+        @variables = {:baz => "baz"}
+        @nodes.each {|node| @basic_node.add_child(node)}
+        @runner = ResourceRouter::Runner.new(@basic_node, %w(baz foo bar), %w(example org))
+      end
+
+      exercise "run!" do
+        @runner.run
+      end
+      verify "sets the variable" do
+        equal(@variables, @runner.variables)
+      end
+      verify "sets itself to the next child" do
+        equal(@child, @runner.node)
+      end
+      verify "returns the remaining children" do
+        equal_unordered(@children, returned)
+      end
+    end
+
   end
 end
