@@ -28,6 +28,7 @@ module ResourceRouter
           # I'm creating runners for further branching here.
         runners.shift unless runner.node
           # Kick it if it's got no new Node, aka dead end.
+          # Note: This runner might still be successful.
         successful_runner = runner if runner.remaining_paths.empty?
       end
       successful_runner
