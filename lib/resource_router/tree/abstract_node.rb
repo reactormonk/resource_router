@@ -49,7 +49,7 @@ module ResourceRouter
       # @return [Boolean]
       # @abstract
       def matches?(runner)
-        raise NotImplemented
+        raise NotImplementedError
       end
 
       # A Runner visits the Node when entering it.
@@ -57,7 +57,7 @@ module ResourceRouter
       # @return [Object] saved to {Runner#variables} with key {#name}
       # @abstract
       def visit(runner)
-        raise NotImplemented
+        raise NotImplementedError
       end
 
       # Comparable, sort by priority, highest first.
