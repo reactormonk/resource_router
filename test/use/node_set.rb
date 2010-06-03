@@ -11,4 +11,27 @@ BareTest.new_component :node_set do
   verify "got a #find_children" do
     returned.respond_to?(:find_children)
   end
+
+  suite "#find_children" do
+    setup do
+      @node_set = @node_set_class.new
+    end
+    setup :example, "a simple example" do
+      @nodes = [
+        ResourceRouter::Tree::StringNode.new(:parent, "bar"),
+        ResourceRouter::Tree::StringNode.new(:parent, "foo"),
+        ResourceRouter::Tree::VariableNode.new(:parent, :baz)
+      ]
+      @node_set.children.replace(@nodes)
+      @runner = ResourceRouter::Runner.new(:node, %w(foo bar), %w(example org))
+      @children = @nodes[1..2]
+    end
+    exercise "find!" do
+      @node_set.find_children(@runner)
+    end
+    verify "find the correct children for :example" do
+      equal(@children)
+    end
+  end
+
 end

@@ -25,6 +25,11 @@ module ResourceRouter
         @node_set.children
       end
 
+      # @param [Node] child add a child Node
+      def add_child(child)
+        @node_set.add_child(child)
+      end
+
       # @return [NodeSet] the NodeSet holding the children
       attr_reader :node_set
 

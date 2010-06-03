@@ -23,6 +23,11 @@ module ResourceRouter
           @children.select {|child| child.matches?(runner)}.sort
         end
 
+        # @param [Node] child add a child Node
+        def add_child(child)
+          @children << child
+        end
+
       end
 
     end
