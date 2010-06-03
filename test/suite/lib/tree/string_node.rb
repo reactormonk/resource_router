@@ -32,6 +32,9 @@ suite "ResourceRouter" do
         verify "the paths got shifted" do
           equal(%w(bar baz), @runner.remaining_paths)
         end
+        verify "it returns nil" do
+          returned.nil?
+        end
 
         suite "#matches?" do
 

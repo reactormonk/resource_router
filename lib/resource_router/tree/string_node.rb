@@ -16,6 +16,7 @@ module ResourceRouter
       # @see AbstractNode#visit
       def visit(runner)
         runner.remaining_paths.shift
+        nil
       end
 
       # @see AbstractNode#matches?
