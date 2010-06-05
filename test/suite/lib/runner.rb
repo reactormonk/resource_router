@@ -60,7 +60,7 @@ suite "ResourceRouter" do
       setup do
         @basic_node = ResourceRouter::Tree::VariableNode.new(:foo)
         @nodes.each {|node| @basic_node.add_child(node)}
-        @variables = {:foo => "baz"}
+        @variables = {@basic_node => "baz"}
         @runner = ResourceRouter::Runner.new(@basic_node, %w(baz foo bar), %w(example org))
       end
 

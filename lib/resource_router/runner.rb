@@ -18,7 +18,7 @@ module ResourceRouter
     # @return [Array<String>] Domains that may be assigned to a node.
     attr_reader :remaining_domains
 
-    # @return [Hash{Symbol => Object}] Nodes should store matched stuff in
+    # @return [Hash{Node => Object}] Nodes should store matched stuff in
     #   this Hash.
     attr_reader :variables
 
@@ -34,7 +34,7 @@ module ResourceRouter
     # @return [void]
     def visit
       if variable = @node.visit(self)
-        variables.merge!({@node.name => variable})
+        variables.merge!({@node => variable})
       end
     end
 
