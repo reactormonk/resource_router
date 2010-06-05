@@ -78,6 +78,20 @@ suite "ResourceRouter" do
       verify "returns the children" do
         equal_unordered(@children, returned)
       end
+
+      exercise "generate_child_runners" do
+        @runner.visit
+        @runner.generate_child_runners
+      end
+      verify "returns a set of new runners" do
+        returned.all? {|runner| runner.kind_of? ResourceRouter::Runner}
+      end
+      then_verify "all children of the node" do
+        equal_unordered(@children, returned.map{|runner| runner.node})
+      end
+      verify "they're duped" do
+        ! returned.any? {|runner| runner.remaining_paths.equal? @runner.remaining_paths}
+      end
     end
 
   end

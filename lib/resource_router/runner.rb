@@ -47,5 +47,12 @@ module ResourceRouter
     def dup
       self.class.new(@node, @remaining_paths.dup, @remaining_domains.dup, @variables.dup)
     end
+
+    def generate_child_runners
+      find_children.map do |node|
+        dup.tap {|run| run.node = node }
+      end
+    end
+
   end
 end
