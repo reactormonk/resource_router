@@ -4,7 +4,7 @@ module ResourceRouter
 
       def visit(runner)
         unless runner.remaining_paths.shift == ""
-          raise "you did something wrong."
+          raise 'RootNode should not be visited unless the path is ""'
         end
       end
 

@@ -23,17 +23,19 @@ module ResourceRouter
     attr_reader :variables
 
     # @return [Node] the node where this runner is at.
-    attr_reader :node
+    attr_accessor :node
 
-    # Visit the current node and move on to the next one.
-    # @return [Array<Node>] leftover nodes
-    def run
+    # Visit the current node.
+    # @return [void]
+    def visit
       if variable = @node.visit(self)
         variables.merge!({@node.name => variable})
       end
-      children = @node.find_children(self)
-      @node = children.shift
-      children
+    end
+
+    # @return [Array<Node>] possible child nodes
+    def find_children
+      @node.find_children(self)
     end
 
     # Guess.

@@ -21,18 +21,15 @@ module ResourceRouter
     # @return [Runner,nil] the successful Runner finding a matching Node.
     def recognize
       runners = [Runner.new(@root_node, @paths, @domains)]
-      successful_runner = nil
-      while !successful_runner || !runners.empty?
-        runner = runners.first
-        nodes = runner.run
-        nodes.each {|node| runners.push(runner.dup)}
-          # I'm creating runners for further branching here.
-        runners.shift unless runner.node
-          # Kick it if it's got no new Node, aka dead end.
-          # Note: This runner might still be successful.
-        successful_runner = runner if runner.remaining_paths.empty?
+      while !runners.empty?
+        runner = runners.shift
+        runner.visit
+        children = runner.find_children
+        children.each do |node|
+          runners.push(runner.dup.tap {|run| run.node = node })
+        end
+        return runner if runner.remaining_paths.empty?
       end
-      successful_runner
     end
 
   end

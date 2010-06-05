@@ -4,6 +4,8 @@ $LOAD_PATH.unshift(File.expand_path("#{__FILE__}/../../lib"))
 # Ensure baretest is required
 require 'baretest'
 
+require 'ruby-debug'
+
 # require components
 require_relative 'use/node_set'
 require_relative 'use/node'

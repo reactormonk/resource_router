@@ -46,8 +46,7 @@ suite "ResourceRouter" do
           ResourceRouter::Tree::StringNode.new("foo"),
           ResourceRouter::Tree::VariableNode.new(:baz)
         ]
-        @children = [@nodes[2]]
-        @child = @nodes[1]
+        @children = @nodes[1..2]
       end
 
       setup :example, "Variable" do
@@ -55,27 +54,28 @@ suite "ResourceRouter" do
           ResourceRouter::Tree::StringNode.new("bar"),
           ResourceRouter::Tree::VariableNode.new(:baz)
         ]
-        @children = []
-        @child = @nodes[1]
+        @children = @nodes[1..1]
       end
 
       setup do
-        @basic_node = ResourceRouter::Tree::StringNode.new("baz")
+        @basic_node = ResourceRouter::Tree::VariableNode.new(:foo)
         @nodes.each {|node| @basic_node.add_child(node)}
-        @variables = {}
+        @variables = {:foo => "baz"}
         @runner = ResourceRouter::Runner.new(@basic_node, %w(baz foo bar), %w(example org))
       end
 
-      exercise "run!" do
-        @runner.run
+      exercise "visit" do
+        @runner.visit
       end
       verify "sets the variable" do
         equal(@variables, @runner.variables)
       end
-      verify "sets itself to the next child" do
-        equal(@child, @runner.node)
+
+      exercise "find_children" do
+        @runner.visit
+        @runner.find_children
       end
-      verify "returns the remaining children" do
+      verify "returns the children" do
         equal_unordered(@children, returned)
       end
     end
