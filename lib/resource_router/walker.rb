@@ -24,11 +24,11 @@ module ResourceRouter
       while !runners.empty?
         runner = runners.shift
         runner.visit
+        return runner if runner.remaining_paths.empty?
         children = runner.find_children
         children.each do |node|
           runners.push(runner.dup.tap {|run| run.node = node })
         end
-        return runner if runner.remaining_paths.empty?
       end
     end
 
