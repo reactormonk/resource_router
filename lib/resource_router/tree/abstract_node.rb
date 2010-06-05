@@ -4,7 +4,7 @@ module ResourceRouter
     class AbstractNode
 
       class << self
-        # @return [NodeSet] the nodeset to use
+        # @return [Class] the nodeset to use
         attr_accessor :node_set
 
         # @return [Integer] priority for this node
