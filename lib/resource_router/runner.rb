@@ -25,6 +25,11 @@ module ResourceRouter
     # @return [Node] the node where this runner is at.
     attr_accessor :node
 
+    # @return [Proc] the action to call
+    def action
+      @node.action
+    end
+
     # Visit the current node.
     # @return [void]
     def visit

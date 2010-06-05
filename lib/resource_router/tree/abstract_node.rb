@@ -58,9 +58,12 @@ module ResourceRouter
         raise NotImplementedError
       end
 
+      # @return [Proc] the app to call
+      attr_accessor :action
+
       # Comparable, sort by priority, highest first.
       def <=>(other)
-         other.class.priority <=> self.class.priority
+        other.class.priority <=> self.class.priority
       end
       include Comparable
 
