@@ -30,10 +30,12 @@ module ResourceRouter
       @node.action
     end
 
-    # Visit the current node.
+    # Visit the current node and merges the return value into the variables
+    # Hash. If the key is nil, it won't be stored.
     # @return [void]
     def visit
-      if variable = @node.visit(self)
+      variable = @node.visit(self)
+      unless @node.key.nil?
         variables.merge!({@node => variable})
       end
     end
