@@ -48,6 +48,7 @@ module ResourceRouter
       self.class.new(@node, @remaining_paths.dup, @remaining_domains.dup, @variables.dup)
     end
 
+    # @return [Array<Runner>] a Runner for each child Node
     def generate_child_runners
       find_children.map do |node|
         dup.tap {|run| run.node = node }
