@@ -39,7 +39,7 @@ module ResourceRouter
       protected :parent=
 
       # @return [Symbol] key for storing variables in the Runner
-      attr_reader :name
+      attr_reader :key
 
       # Most basic method that checks wherever the given node may be matched
       # to the remaining path.
@@ -52,7 +52,7 @@ module ResourceRouter
 
       # A Runner visits the Node when entering it.
       # @param [Runner] runner set the variables in that runner
-      # @return [Object] saved to {Runner#variables} with key {#name}
+      # @return [Object] saved to {Runner#variables} with key Node
       # @abstract
       def visit(runner)
         raise NotImplementedError

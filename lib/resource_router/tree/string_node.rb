@@ -5,7 +5,7 @@ module ResourceRouter
 
       # @param [String] string The String to be matched by this Node.
       def initialize(string)
-        @string = @name = string
+        @string = string
       end
 
       self.priority = 7
