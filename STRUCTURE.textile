@@ -2,14 +2,15 @@ h1. the three parts of tree routing
 
 h2. parsing
 
-Done by @URI::parse@.
+Taking stuff from the env rack hash.
 
 h2. Walker
 
 The Walker creates a Runner and sends it through the tree. If the Runner finds
 more than one path somewhere, the Walker dups the Runner and shifts it to an
 Array and tires it later on if the inital one fails to find a Route. Note:
-This way we don't find ambigious routes, so the walking algorithms have to
-prefer more specific routes (set further left in the Array of children).
+This way we don't find ambigious routes, that's why there is the 'priority'
+in a Node. The higher the priority, the more specific the path is, the sooner
+it will be walked.
 
 h2. calling the rack app
