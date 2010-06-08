@@ -22,7 +22,7 @@ module ResourceRouter
       while !runners.empty?
         runner = runners.shift
         runner.visit
-        runners += runner.generate_child_runners
+        runners.unshift(*runner.generate_child_runners)
         return runner if runner.remaining_paths.empty?
       end
     end
