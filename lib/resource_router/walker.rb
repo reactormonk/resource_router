@@ -1,14 +1,12 @@
-require 'uri'
 require 'resource_router/runner'
 module ResourceRouter
   class Walker
 
     # @param [String] url the URL to parse
     # @param [Node] root_node the staring node (likely a RootNode)
-    def initialize(url, root_node)
-      @uri = URI::parse(url)
-      @paths = @uri.path.split("/")
-      @domains = @uri.host.split('.')
+    def initialize(env, root_node)
+      @paths = env['REQUEST_PATH'].split("/")
+      @domains = env['HTTP_HOST'].split('.')
       @root_node = root_node
     end
 

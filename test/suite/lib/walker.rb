@@ -7,11 +7,14 @@ suite "ResourceRouter" do
   suite "Walker" do
 
     setup do
-      @url = "http://foo.bar.baz/make/me/a/sandwitch/"
+      @env = {
+        'REQUEST_PATH' => '/make/me/a/sandwitch/',
+        'HTTP_HOST'    => 'foo.bar.baz'
+      }
     end
 
     exercise "a new Walker" do
-      ResourceRouter::Walker.new(@url, nil)
+      ResourceRouter::Walker.new(@env, nil)
     end
     verify "got an array of paths" do
       equal(returned.paths, [''] + %w(make me a sandwitch))
@@ -29,7 +32,7 @@ suite "ResourceRouter" do
         @root_node.add_child(@target)
       end
       setup do
-        @walker = ResourceRouter::Walker.new("http://example.org/foo", @root_node)
+        @walker = ResourceRouter::Walker.new({'REQUEST_PATH' => '/foo', 'HTTP_HOST' => ''}, @root_node)
       end
 
       exercise "walk :tree" do

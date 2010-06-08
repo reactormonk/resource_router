@@ -50,7 +50,7 @@ suite "ResourceRouter" do
         setup do
           @node = @node_class.new(:key)
           @root_node.add_child(@node)
-          @walker = ResourceRouter::Walker.new("http://example.org/foo/bar/baz", @root_node)
+          @walker = ResourceRouter::Walker.new({'HTTP_HOST' => 'example.org', 'REQUEST_PATH' => '/foo/bar/baz'}, @root_node)
         end
 
         exercise "#recognize" do
