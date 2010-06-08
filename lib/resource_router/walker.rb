@@ -22,8 +22,8 @@ module ResourceRouter
       while !runners.empty?
         runner = runners.shift
         runner.visit
-        runners.unshift(*runner.generate_child_runners)
         return runner if runner.remaining_paths.empty?
+        runners.unshift(*runner.generate_child_runners)
       end
     end
 
